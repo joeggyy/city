@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:widget="http://www.netvibes.com/ns/">
+
+    <head>
+        <title>Publish Subscribe Demo V2</title>
+        <meta name="author" content="Widget author name" />
+        <meta name="description" content="Widget description here" />
+        <meta name="keywords" content="Keywords of widget functions here" />
+        <meta name="apiVersion" content="0.1" />
+        <meta name="debugMode" content="true" />
+        <meta name="strictMode" content="false" />
+
+        <!-- FOR DEV PURPOSE ONLY -->
+        <meta http-equiv="pragma" content="no-cache">
+        <meta http-equiv="cache-control" content="no-cache">
+        <meta http-equiv="expires" content="0">
+        <!-- End of FOR DEV PURPOSE ONLY -->
+
+        <!-- Application Standalone emulation files -->
+        <link rel="stylesheet" type="text/css" href="http://uwa.netvibes.com/lib/c/UWA/assets/css/standalone.css" />
+        <script type="text/javascript" src="http://uwa.netvibes.com/lib/c/UWA/js/UWA_Standalone_Alone.js"></script>
+
+        <!-- Custom CSS or JS library -->
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <!-- <script type="text/javascript" src="http://uwa.netvibes.com/lib/c/UWA/js/UWA_Standalone_Alone.js"></script> -->
+
+        <!-- Main Scripts -->
+        <script>
+
+            // Modify host and project according to your server setting
+            var host = 'https://cityapi.000webhostapp.com/cityapiJoe', // URL of server
+			
+                project = '/'; // folder referencing to your project resources
+
+            // AMD loader setting. For complete documentation, refer to https://requirejs.org/docs/whyamd.html
+            require.config({
+                // urlArgs: "bust=" + (new Date()).getTime(), // cache buster for dev purpose. This appends unix time whenever your scripts are retrieved thus not cached
+                paths: {
+                    'Widget': host + project, // setup "Widget" alias path for resources script in e.g. https://sgp-server2015x.uwglobe.com/widget/widget-template-with-cityapi-v2
+                    'Modules': host + project + '/modules', // setup "Modules" alias path for resources script in e.g. https://sgp-server2015x.uwglobe.com/widget/widget-template-with-cityapi-v2/modules
+                    'DS': host + '/assets/DS' // setup "DS" alias path for resources script in e.g. https://sgp-server2015x.uwglobe.com/widget/asset/DS
+                }
+            });
+
+            require(
+                [
+                    "Widget/Main" // load Main.js module from "Widget" alias, i.e. https://sgp-server2015x.uwglobe.com/widget/widget-template-with-cityapi-v2/Main.js
+                ],
+                function(
+                    Main // loaded Main.js functions will be accesible via this "Main" variable
+                ) 
+                {
+                    // global variables (widget, UWA, document)
+
+                    // Function to call when widget is loaded
+                    widget.addEvent("onLoad", Main.onLoad);
+
+                    // Function to call when widget is being resized
+                    widget.addEvent("onResize", Main.onResize);
+
+                    // Function to call when widget view changed
+                    widget.addEvent("onViewChange", Main.onViewChange);
+
+                    // Function to call when a preference item is changed
+                    widget.addEvent("onEdit", Main.onEdit);
+
+                    // Function to call when refresh button is clicked
+                    widget.addEvent("onRefresh", Main.onRefresh);
+
+                    // Function to call when prefence edit is finalized
+                    widget.addEvent("endEdit", Main.endEdit);
+                }
+            );
+        </script>
+
+    </head>
+
+    <body></body>
+
+</html>
